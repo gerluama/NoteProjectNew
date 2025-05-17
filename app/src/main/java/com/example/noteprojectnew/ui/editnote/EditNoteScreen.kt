@@ -11,26 +11,15 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import kotlinx.coroutines.flow.collectLatest
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import android.app.Application
 import androidx.navigation.NavController
 
 @Composable
-fun EditNoteScreen(
-    noteId: Long,
-    navController: NavController,
-    viewModel: EditNoteViewModel = viewModel(
+fun EditNoteScreen(noteId: Long, navController: NavController, viewModel: EditNoteViewModel = viewModel(
         factory = EditNoteViewModelFactory(noteId)
-    )
-) {
+    )) {
     val title by viewModel.title.observeAsState("")
     val content by viewModel.content.observeAsState("")
 
