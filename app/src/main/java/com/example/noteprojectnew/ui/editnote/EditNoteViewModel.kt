@@ -12,9 +12,8 @@ class EditNoteViewModel(
     private val noteId: Long,
     application: Application
 ) : AndroidViewModel(application) {
-    private val repository: NoteRepository
 
-    val note = MutableLiveData<Note?>()
+    private val repository: NoteRepository
     val title = MutableLiveData<String>()
     val content = MutableLiveData<String>()
 
@@ -23,25 +22,32 @@ class EditNoteViewModel(
         repository = NoteRepository(dao)
 
         if (noteId > 0) {
-            viewModelScope.launch {
-                note.value = repository.getNoteById(noteId)
-                title.value = note.value?.title ?: ""
-                content.value = note.value?.content ?: ""
-            }
+            loadNote()
+        }
+    }
+
+    private fun loadNote() = viewModelScope.launch {
+        val note = repository.getNoteById(noteId)
+        note?.let {
+            title.postValue(it.title)
+            content.postValue(it.content)
         }
     }
 
     fun saveNote() = viewModelScope.launch {
-        val newNote = Note(
+        val currentTitle = title.value ?: ""
+        val currentContent = content.value ?: ""
+
+        val note = Note(
             id = if (noteId > 0) noteId else 0,
-            title = title.value ?: "",
-            content = content.value ?: ""
+            title = currentTitle,
+            content = currentContent
         )
 
         if (noteId > 0) {
-            repository.update(newNote)
+            repository.update(note)
         } else {
-            repository.insert(newNote)
+            repository.insert(note)
         }
     }
 }

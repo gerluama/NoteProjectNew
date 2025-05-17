@@ -23,5 +23,5 @@ interface NoteDao {
     suspend fun update(note: Note)
 
     @Query("SELECT * FROM notes WHERE id = :id")
-    suspend fun getNoteById(id: Int): Note?
+    suspend fun getNoteById(id: Long): Note?
 }
