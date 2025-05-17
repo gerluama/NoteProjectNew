@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.noteprojectnew.data.model.AppDatabase
+import com.example.noteprojectnew.data.model.NotesDatabase
 import com.example.noteprojectnew.data.model.Note
 import kotlinx.coroutines.launch
 
@@ -19,7 +19,7 @@ class EditNoteViewModel(
     val content = MutableLiveData<String>()
 
     init {
-        val dao = AppDatabase.getDatabase(application).noteDao()
+        val dao = NotesDatabase.getDatabase(application).noteDao()
         repository = NoteRepository(dao)
 
         if (noteId > 0) {

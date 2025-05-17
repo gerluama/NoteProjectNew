@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.noteprojectnew.data.model.AppDatabase
+import com.example.noteprojectnew.data.model.NotesDatabase
 import com.example.noteprojectnew.data.model.Note
 import kotlinx.coroutines.launch
 
@@ -13,7 +13,7 @@ class NotesViewModel(application: Application) : AndroidViewModel(application) {
     val allNotes: LiveData<List<Note>>
 
     init {
-        val dao = AppDatabase.getDatabase(application).noteDao()
+        val dao = NotesDatabase.getDatabase(application).noteDao()
         repository = NoteRepository(dao)
         allNotes = repository.allNotes
     }
