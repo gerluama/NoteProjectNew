@@ -1,37 +1,25 @@
 package com.example.noteprojectnew.data.model
 
+import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import android.content.Context
-import com.example.noteproject.data.dao.NoteDao
-import com.example.noteproject.data.model.Note
 
-/**
- * База данных Room для хранения заметок.
- */
-@Database(
-    entities = [Note::class],
-    version = 1,
-    exportSchema = false
-)
-abstract class NotesDatabase : RoomDatabase() {
-
+@Database(entities = [Note::class], version = 1)
+abstract class AppDatabase : RoomDatabase() {
     abstract fun noteDao(): NoteDao
 
     companion object {
         @Volatile
-        private var INSTANCE: NotesDatabase? = null
+        private var INSTANCE: AppDatabase? = null
 
-        fun getDatabase(context: Context): NotesDatabase {
+        fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    NotesDatabase::class.java,
-                    "notes_database"
-                )
-                    .fallbackToDestructiveMigration() // Удаляет старую БД при обновлении версии
-                    .build()
+                    AppDatabase::class.java,
+                    "note_database"
+                ).build()
                 INSTANCE = instance
                 instance
             }
