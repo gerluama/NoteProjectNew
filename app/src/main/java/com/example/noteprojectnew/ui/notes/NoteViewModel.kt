@@ -1,6 +1,14 @@
 package com.example.noteprojectnew.ui.notes
 
-class NoteViewModel(application: Application) : AndroidViewModel(application) {
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
+import com.example.noteprojectnew.data.model.AppDatabase
+import com.example.noteprojectnew.data.model.Note
+import kotlinx.coroutines.launch
+
+class NotesViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: NoteRepository
     val allNotes: LiveData<List<Note>>
 
@@ -10,15 +18,9 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
         allNotes = repository.allNotes
     }
 
-    fun insert(note: Note) = viewModelScope.launch {
-        repository.insert(note)
-    }
-
-    fun update(note: Note) = viewModelScope.launch {
-        repository.update(note)
-    }
-
-    fun delete(note: Note) = viewModelScope.launch {
+    fun deleteNote(note: Note) = viewModelScope.launch {
         repository.delete(note)
     }
+
+    // Другие методы...
 }
