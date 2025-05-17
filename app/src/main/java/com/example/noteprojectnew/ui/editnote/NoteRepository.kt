@@ -1,5 +1,6 @@
 package com.example.noteprojectnew.ui.editnote
 
+import androidx.lifecycle.LiveData
 import com.example.noteprojectnew.data.model.Note
 import com.example.noteprojectnew.data.model.NoteDao
 import kotlinx.coroutines.flow.Flow
@@ -7,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 class NoteRepository(private val noteDao: NoteDao) {
 
     // Получение всех заметок
-    val allNotes: Flow<List<Note>> = noteDao.getAllNotes()
+    val allNotes: LiveData<List<Note>> = noteDao.getAllNotes()
 
     // Получение конкретной заметки по ID
     suspend fun getNoteById(id: Long): Note? {
@@ -28,4 +29,8 @@ class NoteRepository(private val noteDao: NoteDao) {
     suspend fun delete(note: Note) {
         noteDao.delete(note)
     }
+
+    fun getallNotes(): LiveData<List<Note>> = noteDao.getAllNotes()
+    //
+
 }

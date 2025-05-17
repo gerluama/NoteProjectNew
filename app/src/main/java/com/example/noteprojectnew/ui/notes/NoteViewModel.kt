@@ -25,4 +25,6 @@ class NotesViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // Другие методы...
+
+
 }

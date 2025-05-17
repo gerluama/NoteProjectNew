@@ -1,5 +1,6 @@
 package com.example.noteprojectnew.data.model
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -11,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface NoteDao {
     @Query("SELECT * FROM notes ORDER BY isPinned DESC, createdAt DESC")
-    fun getAllNotes(): Flow<List<Note>>
+    fun getAllNotes(): LiveData<List<Note>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(note: Note)
