@@ -1,19 +1,12 @@
 package com.example.noteprojectnew.ui.editnote
 
+import android.app.Application
 import androidx.compose.runtime.Composable
-import androidx.compose.material3.SnackbarHostState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.lifecycle.viewmodel.compose.viewModel
-import android.app.Application
 import androidx.navigation.NavController
 
 @Composable

@@ -30,8 +30,8 @@ fun NoteItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .clickable(onClick = onClick),
-        elevation = 4.dp
+            .clickable(onClick = onClick)
+        //elevation = 4.dp
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
@@ -46,8 +46,7 @@ fun NoteItem(
                 overflow = TextOverflow.Ellipsis
             )
             IconButton(
-                onClick = onDelete,
-                modifier = Modifier.align(LineHeightStyle.Alignment.End)
+                onClick = onDelete
             ) {
                 Icon(Icons.Default.Delete, contentDescription = "Delete")
             }
