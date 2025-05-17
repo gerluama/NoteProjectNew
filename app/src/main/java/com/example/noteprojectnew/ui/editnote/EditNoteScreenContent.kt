@@ -14,7 +14,17 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Save
+import androidx.compose.material3.*
+import androidx.compose.ui.unit.dp
+import androidx.compose.material.icons.filled.Save
+import androidx.compose.material3.icons.filled.Save
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EditNoteScreenContent(
     title: String,
@@ -30,25 +40,39 @@ fun EditNoteScreenContent(
                 title = { Text("Edit Note") },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
                     }
                 },
                 actions = {
                     IconButton(onClick = onSave) {
-                        Icon(Icons.Default.Save, contentDescription = "Save")
+                        Icon(
+                            imageVector = Icons.Default.Check,
+                            contentDescription = "Save"
+                        )
                     }
                 }
             )
         }
-    ) { padding ->
-        Column(modifier = Modifier.padding(padding)) {
-            TextField(
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .padding(paddingValues)
+                .fillMaxSize()
+                .padding(16.dp)
+        ) {
+            OutlinedTextField(
                 value = title,
                 onValueChange = onTitleChange,
                 label = { Text("Title") },
                 modifier = Modifier.fillMaxWidth()
             )
-            TextField(
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            OutlinedTextField(
                 value = content,
                 onValueChange = onContentChange,
                 label = { Text("Content") },
