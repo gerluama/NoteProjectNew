@@ -1,6 +1,5 @@
 package com.example.noteprojectnew.ui.notes
 
-import ads_mobile_sdk.h6
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -37,12 +36,12 @@ fun NoteItem(
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = note.title,
-                style = MaterialTheme.typography.h6
+                style = MaterialTheme.typography.headlineMedium
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = note.content,
-                style = MaterialTheme.typography.body1,
+                style = MaterialTheme.typography.bodyMedium,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
