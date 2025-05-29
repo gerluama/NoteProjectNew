@@ -33,7 +33,9 @@ fun NoteItem(
             .clickable(onClick = onClick)
         //elevation = 4.dp
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth()) {
             Text(
                 text = note.title,
                 style = MaterialTheme.typography.headlineMedium
